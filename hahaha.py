@@ -1,6 +1,7 @@
 import requests
 import re
 import threading
+import os
 lock = threading.Lock()
 def GET_URL(url):
     try:
@@ -38,6 +39,8 @@ class Mythread(threading.Thread):
                     lock.acquire()
                     a = requests.get(item[0])
                     print(item[0])
+                    if not os.path.exists('F://233'):
+                        os.mkdir('F://233')
                     with open('F://233/'+item[0].split('/')[-1],'wb') as d:
                         d.write(a.content)
                         d.close()
